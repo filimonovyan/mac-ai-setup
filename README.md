@@ -66,6 +66,7 @@ bash <(curl -fsSL https://raw.githubusercontent.com/filimonovyan/mac-ai-setup/ma
 5. Настраивает Терминал: коробка `~/ai-tools` включается сама, а отправка отчётов в компанию Headroom выключена.
 6. Ставит приложение **Figma**, если его ещё нет.
 7. Ставит **Claude Code**, если его ещё нет, и подключает к нему MemPalace (память) и Figma.
+8. Ставит 4 агентов Claude Code в `~/.claude/agents`.
 
 Если что-то пойдёт не так, файл покажет, на каком шаге ошибка, и сохранит весь отчёт в `~/install-log.txt`.
 
@@ -156,3 +157,24 @@ headroom wrap claude
 ✅ **Проверено на настоящем MacBook с процессором Intel** (x86_64): `install-mac.sh` поставил всё, а `check-mac.sh` показал 12 из 12.
 
 Ещё раньше каждая программа по отдельности поставилась и сработала в облачной сессии Claude на Linux. На Mac с Apple M1, M2, M3… набор пока не запускали.
+
+## Агенты Claude Code
+
+В папке `.claude/agents/` лежат 4 агента:
+
+| Агент | Что делает |
+|---|---|
+| `daily-checker` | Проверяет данные: пустые места, повторы, странные числа. Ничего не меняет |
+| `researcher` | Ищет информацию в интернете и в файлах, даёт ссылки |
+| `mail-calendar` | Gmail и Google Календарь: важные письма, черновики, встречи. Сам не отправляет |
+| `writer` | Пишет и правит тексты |
+
+Поставить только агентов (одна строка в Терминале):
+```
+bash <(curl -fsSL https://raw.githubusercontent.com/filimonovyan/mac-ai-setup/main/install-agents.sh)
+```
+`install-mac.sh` ставит их сам (шаг 8).
+
+Как позвать: откройте Claude Code и напишите, например, «Используй агента researcher: найди…». Список агентов: команда `/agents`.
+
+Для `mail-calendar` к Claude Code должны быть подключены Gmail и Google Календарь.

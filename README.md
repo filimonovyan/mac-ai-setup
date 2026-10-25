@@ -2,7 +2,11 @@
 
 **Набор для Claude Code на Mac: видео, речь в текст, дизайн, память и экономия токенов. Ставится одной командой.**
 
-*Claude Code toolkit for macOS: video (Remotion, ffmpeg), speech-to-text (Whisper), design (Figma MCP), memory (MemPalace MCP), token saving (Headroom), browser automation (Playwright). One-command install.*
+> 💻 **Работает на Mac с процессором Intel.** Homebrew такие Mac больше не поддерживает, а этот набор ставится без него: берутся готовые версии программ, которые ещё работают на Intel. На новых Mac (Apple M1, M2, M3…) он тоже работает.
+>
+> Узнать свой процессор: меню  → **Об этом Mac**. Там будет написано **Intel** или **Apple M…**
+
+*Claude Code toolkit for macOS, **including Intel Macs** (no Homebrew needed): video (Remotion, ffmpeg), speech-to-text (Whisper), design (Figma MCP), memory (MemPalace MCP), token saving (Headroom), browser automation (Playwright). One-command install.*
 
 Для кого: блогеры, дизайнеры, авторы видео, все, кто хочет, чтобы Claude делал больше, чем просто писал текст.
 
@@ -14,7 +18,7 @@
 - 💸 тратить меньше токенов;
 - 🌐 автоматически открывать сайты и делать их снимки.
 
-`#ClaudeCode` `#Claude` `#Anthropic` `#MCP` `#AI` `#ИИ` `#нейросети` `#macOS` `#Mac` `#Figma` `#FigmaMCP` `#Remotion` `#Whisper` `#ffmpeg` `#Playwright` `#MemPalace` `#Headroom` `#видео` `#монтаж` `#субтитры` `#транскрибация` `#дизайн` `#автоматизация` `#AIvideo` `#speechtotext` `#designtocode`
+`#ClaudeCode` `#Claude` `#Anthropic` `#MCP` `#AI` `#ИИ` `#нейросети` `#macOS` `#Mac` `#IntelMac` `#MacIntel` `#x86_64` `#безHomebrew` `#Figma` `#FigmaMCP` `#Remotion` `#Whisper` `#ffmpeg` `#Playwright` `#MemPalace` `#Headroom` `#видео` `#монтаж` `#субтитры` `#транскрибация` `#дизайн` `#автоматизация` `#AIvideo` `#speechtotext` `#designtocode`
 
 ## Что внутри
 

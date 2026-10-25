@@ -156,3 +156,12 @@ headroom wrap claude
 ✅ **Проверено на настоящем MacBook с процессором Intel** (x86_64): `install-mac.sh` поставил всё, а `check-mac.sh` показал 12 из 12.
 
 Ещё раньше каждая программа по отдельности поставилась и сработала в облачной сессии Claude на Linux. На Mac с Apple M1, M2, M3… набор пока не запускали.
+
+## Агенты Claude Code
+
+В папке `.claude/agents/` лежат 4 агента: `daily-checker`, `researcher`, `mail-calendar`, `writer`.
+В облаке (claude.ai/code) они работают сами. Чтобы они были везде на Mac:
+
+```
+mkdir -p ~/.claude/agents && cp .claude/agents/*.md ~/.claude/agents/
+```

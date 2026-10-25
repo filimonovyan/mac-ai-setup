@@ -12,10 +12,14 @@ if [ -x /opt/homebrew/bin/brew ]; then
 fi
 
 # 2. Основные программы
-brew install node python ffmpeg
+# Python 3.13: на нём всё проверено, на самых новых версиях может не встать
+brew install node python@3.13 ffmpeg
 
 # 3. whisper, Headroom и MemPalace (в отдельной "коробке" ~/ai-tools)
-python3 -m venv ~/ai-tools
+if [ -x ~/ai-tools/bin/python ] && ! ~/ai-tools/bin/python -V | grep -q " 3\.13\."; then
+  rm -rf ~/ai-tools
+fi
+"$(brew --prefix python@3.13)/bin/python3.13" -m venv ~/ai-tools
 source ~/ai-tools/bin/activate
 pip install --upgrade pip
 pip install faster-whisper "headroom-ai[proxy]" mempalace
@@ -34,7 +38,10 @@ grep -q 'HEADROOM_BEACON' ~/.zshrc 2>/dev/null || echo 'export HEADROOM_BEACON=o
 # 6. Приложение Figma
 [ -d /Applications/Figma.app ] || brew install --cask figma
 
-# 7. Подключить MemPalace и Figma к Claude Code
+# 7. Claude Code
+command -v claude >/dev/null 2>&1 || npm install -g @anthropic-ai/claude-code
+
+# 8. Подключить MemPalace и Figma к Claude Code
 if command -v claude >/dev/null 2>&1; then
   claude mcp add --scope user mempalace -- ~/ai-tools/bin/mempalace-mcp || true
   claude mcp add --scope user --transport http figma https://mcp.figma.com/mcp || true

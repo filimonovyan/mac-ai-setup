@@ -30,6 +30,13 @@
 
 ## Как поставить всё сразу
 
+Самый простой способ: откройте Терминал и вставьте одну строку:
+```
+bash <(curl -fsSL https://raw.githubusercontent.com/filimonovyan/mac-ai-setup/main/install-mac.sh)
+```
+
+Или скачайте файл и запустите его сами:
+
 1. Скачайте этот репозиторий: зелёная кнопка **Code**, потом **Download ZIP**, потом распакуйте архив.
 2. Откройте Терминал: нажмите **Cmd + Пробел**, напишите «Терминал» и нажмите Enter.
 3. Напишите `bash ` (с пробелом в конце) и перетащите в окно Терминала файл `install-mac.sh`. Нажмите Enter.
@@ -47,12 +54,13 @@ bash <(curl -fsSL https://raw.githubusercontent.com/filimonovyan/mac-ai-setup/ma
 ### Что делает `install-mac.sh`
 
 1. Ставит **Homebrew** (магазин программ для Mac), если его ещё нет.
-2. Ставит **Node.js**, **Python** и **ffmpeg**.
+2. Ставит **Node.js**, **Python 3.13** и **ffmpeg**. Python нужен именно 3.13: на нём всё проверено, а на самых новых версиях whisper и MemPalace могут не поставиться.
 3. Делает отдельную «коробку» для программ на Python (`~/ai-tools`) и ставит туда whisper, Headroom и MemPalace. Коробка нужна, потому что Mac не даёт ставить такие программы прямо в систему.
 4. Ставит Remotion и Playwright в папку `~/remotion-app`.
 5. Настраивает Терминал: коробка `~/ai-tools` включается сама, а отправка отчётов в компанию Headroom выключена.
 6. Ставит приложение **Figma**, если его ещё нет.
-7. Подключает к Claude Code MemPalace (память) и Figma (если Claude Code уже установлен).
+7. Ставит **Claude Code**, если его ещё нет.
+8. Подключает к Claude Code MemPalace (память) и Figma.
 
 ## Как пользоваться
 
@@ -103,11 +111,12 @@ headroom wrap claude
 | Что | Команда |
 |---|---|
 | ffmpeg | `brew install ffmpeg` |
-| Python-коробка (нужна для 3 строк ниже) | `brew install python && python3 -m venv ~/ai-tools` |
+| Python-коробка (нужна для 3 строк ниже) | `brew install python@3.13 && $(brew --prefix python@3.13)/bin/python3.13 -m venv ~/ai-tools` |
 | whisper | `~/ai-tools/bin/pip install faster-whisper` |
 | Headroom | `~/ai-tools/bin/pip install "headroom-ai[proxy]"` |
 | MemPalace | `~/ai-tools/bin/pip install mempalace` |
 | MemPalace → Claude | `claude mcp add --scope user mempalace -- ~/ai-tools/bin/mempalace-mcp` |
+| Claude Code | `brew install node && npm install -g @anthropic-ai/claude-code` |
 | Remotion | `brew install node && npm i remotion @remotion/cli react react-dom` |
 | Playwright | `brew install node && npm i playwright && npx playwright install chromium` |
 | Figma (приложение) | `brew install --cask figma` |

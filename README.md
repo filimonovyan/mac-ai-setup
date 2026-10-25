@@ -175,6 +175,6 @@ bash <(curl -fsSL https://raw.githubusercontent.com/filimonovyan/mac-ai-setup/ma
 ```
 `install-mac.sh` ставит их сам (шаг 8).
 
-Как позвать: откройте Claude Code и напишите, например, «Используй агента researcher: найди…». Список агентов: команда `/agents`.
+Как позвать: откройте Claude Code и напишите, например, «Используй агента researcher: найди…». Чтобы увидеть список, спросите Claude: «Какие у тебя есть агенты?»
 
 Для `mail-calendar` к Claude Code должны быть подключены Gmail и Google Календарь.

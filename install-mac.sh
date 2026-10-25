@@ -2,6 +2,12 @@
 # Ставит на Mac: ffmpeg, whisper, Headroom, MemPalace, Remotion, Playwright, Figma
 set -e
 
+# Весь отчёт пишется ещё и в файл ~/install-log.txt
+exec > >(tee ~/install-log.txt) 2>&1
+trap 'echo ""; echo "❌ ОШИБКА на строке $LINENO: $BASH_COMMAND"; echo "Пришлите Claude файл ~/install-log.txt"' ERR
+
+echo "▶ Начинаю установку..."
+
 # 1. Homebrew (магазин программ)
 if ! command -v brew >/dev/null 2>&1; then
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"

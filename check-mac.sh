@@ -4,6 +4,7 @@
 
 [ -f ~/ai-tools/bin/activate ] && source ~/ai-tools/bin/activate
 [ -x /opt/homebrew/bin/brew ] && eval "$(/opt/homebrew/bin/brew shellenv)"
+export PATH="$HOME/.local/bin:$PATH"
 
 OK=0; BAD=0
 good() { echo "✅ $1"; OK=$((OK+1)); }
@@ -12,15 +13,15 @@ bad()  { echo "❌ $1"; echo "   → $2"; BAD=$((BAD+1)); }
 TMP=$(mktemp -d)
 trap 'rm -rf "$TMP"' EXIT
 
-command -v brew >/dev/null && good "Homebrew" || bad "Homebrew" "запустите install-mac.sh"
-command -v node >/dev/null && good "Node.js $(node -v)" || bad "Node.js" "brew install node"
-command -v python3 >/dev/null && good "Python $(python3 -V | cut -d' ' -f2)" || bad "Python" "brew install python"
+echo "ℹ️  Процессор: $(uname -m)  (x86_64 = Intel, arm64 = Apple M)"
+command -v node >/dev/null && good "Node.js $(node -v)" || bad "Node.js" "скачайте с https://nodejs.org"
+[ -x ~/ai-tools/bin/python ] && good "Python $(~/ai-tools/bin/python -V | cut -d' ' -f2) в ~/ai-tools" || bad "Python в ~/ai-tools" "запустите install-mac.sh"
 
 # ffmpeg: делает 1 секунду звука
 if ffmpeg -y -loglevel error -f lavfi -i "sine=frequency=440:duration=1" "$TMP/t.wav" 2>/dev/null; then
   good "ffmpeg"
 else
-  bad "ffmpeg" "brew install ffmpeg"
+  bad "ffmpeg" "запустите install-mac.sh"
 fi
 
 # whisper: загружает самую маленькую модель
@@ -34,14 +35,14 @@ else
   if grep -q metadata_errors "$TMP/w.err"; then
     bad "whisper" "pip install \"av<16\""
   else
-    bad "whisper" "pip install faster-whisper"
+    bad "whisper" "запустите install-mac.sh"
   fi
 fi
 
 command -v headroom >/dev/null && good "Headroom $(headroom --version 2>/dev/null | awk '{print $NF}')" \
-  || bad "Headroom" "pip install \"headroom-ai[proxy]\""
+  || bad "Headroom" "запустите install-mac.sh"
 
-command -v mempalace >/dev/null && good "MemPalace" || bad "MemPalace" "pip install mempalace"
+command -v mempalace >/dev/null && good "MemPalace" || bad "MemPalace" "запустите install-mac.sh"
 
 # Remotion и Playwright в ~/remotion-app
 if [ -d ~/remotion-app/node_modules/remotion ]; then good "Remotion"; else bad "Remotion" "запустите install-mac.sh"; fi
@@ -53,7 +54,7 @@ else
   bad "Playwright" "cd ~/remotion-app && npx playwright install chromium"
 fi
 
-[ -d /Applications/Figma.app ] && good "Приложение Figma" || bad "Приложение Figma" "brew install --cask figma"
+[ -d /Applications/Figma.app ] && good "Приложение Figma" || bad "Приложение Figma" "скачайте с https://www.figma.com/downloads/"
 
 # Подключения к Claude Code
 if command -v claude >/dev/null; then

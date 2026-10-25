@@ -1,5 +1,5 @@
 #!/bin/bash
-# Ставит на Mac: ffmpeg, whisper, Headroom, MemPalace, Remotion, Playwright
+# Ставит на Mac: ffmpeg, whisper, Headroom, MemPalace, Remotion, Playwright, Figma
 set -e
 
 # 1. Homebrew (магазин программ)
@@ -31,12 +31,17 @@ npx playwright install chromium
 grep -q 'ai-tools/bin/activate' ~/.zshrc 2>/dev/null || echo 'source ~/ai-tools/bin/activate' >> ~/.zshrc
 grep -q 'HEADROOM_BEACON' ~/.zshrc 2>/dev/null || echo 'export HEADROOM_BEACON=off' >> ~/.zshrc
 
-# 6. Подключить MemPalace как память для Claude Code
+# 6. Приложение Figma
+[ -d /Applications/Figma.app ] || brew install --cask figma
+
+# 7. Подключить MemPalace и Figma к Claude Code
 if command -v claude >/dev/null 2>&1; then
   claude mcp add --scope user mempalace -- ~/ai-tools/bin/mempalace-mcp || true
+  claude mcp add --scope user --transport http figma https://mcp.figma.com/mcp || true
 else
   echo "Claude Code не найден. Потом выполните:"
   echo "  claude mcp add --scope user mempalace -- ~/ai-tools/bin/mempalace-mcp"
+  echo "  claude mcp add --scope user --transport http figma https://mcp.figma.com/mcp"
 fi
 
 echo ""

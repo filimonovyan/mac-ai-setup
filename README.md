@@ -12,6 +12,7 @@
 | **whisper** (faster-whisper) | Превращает речь в текст | Субтитры, расшифровка записей |
 | **Headroom** | Сжимает текст, который уходит к ИИ | Тратить меньше токенов (дешевле) |
 | **MemPalace** | Память для ИИ: хранит заметки и ищет в них | Чтобы Claude помнил ваши заметки и прошлую работу |
+| **Figma** | Программа для дизайна: макеты сайтов и приложений | Чтобы Claude смотрел ваши макеты и делал по ним код |
 
 ## Как поставить всё сразу
 
@@ -30,7 +31,8 @@
 3. Делает отдельную «коробку» для программ на Python (`~/ai-tools`) и ставит туда whisper, Headroom и MemPalace. Коробка нужна, потому что Mac не даёт ставить такие программы прямо в систему.
 4. Ставит Remotion и Playwright в папку `~/remotion-app`.
 5. Настраивает Терминал: коробка `~/ai-tools` включается сама, а отправка отчётов в компанию Headroom выключена.
-6. Подключает MemPalace как память к Claude Code (если Claude Code уже установлен).
+6. Ставит приложение **Figma**, если его ещё нет.
+7. Подключает к Claude Code MemPalace (память) и Figma (если Claude Code уже установлен).
 
 ## Как пользоваться
 
@@ -55,6 +57,16 @@ claude                                # спросить: «найди в пам
 ```
 Очень короткие заметки, в одну строку, MemPalace может пропустить.
 
+### Figma: макеты для Claude
+Один раз надо войти в Figma:
+1. Запустите `claude`.
+2. Напишите `/mcp`, выберите **figma** и нажмите **Authenticate**.
+3. Откроется браузер: войдите в Figma и нажмите «Разрешить».
+
+Потом скопируйте в Figma ссылку на макет (правый клик по рамке → **Copy link**) и скажите Claude: «сделай код по этому макету: <ссылка>».
+
+Подключить Figma можно и на claude.ai: **Настройки → Коннекторы → Figma**.
+
 ### Headroom: экономия токенов
 ```
 headroom wrap claude
@@ -78,6 +90,8 @@ headroom wrap claude
 | MemPalace → Claude | `claude mcp add --scope user mempalace -- ~/ai-tools/bin/mempalace-mcp` |
 | Remotion | `brew install node && npm i remotion @remotion/cli react react-dom` |
 | Playwright | `brew install node && npm i playwright && npx playwright install chromium` |
+| Figma (приложение) | `brew install --cask figma` |
+| Figma → Claude | `claude mcp add --scope user --transport http figma https://mcp.figma.com/mcp` |
 
 ## Если что-то не так
 
@@ -87,4 +101,4 @@ headroom wrap claude
 
 ## Что проверено
 
-Всё проверено в облачной сессии Claude на Linux: каждая программа поставилась и сработала. На настоящем Mac файл `install-mac.sh` пока не запускался.
+Всё проверено в облачной сессии Claude на Linux: каждая программа поставилась и сработала. Кроме Figma: в облачной сессии сайт Figma был закрыт, а приложение Figma бывает только для Mac и Windows. На настоящем Mac файл `install-mac.sh` пока не запускался.

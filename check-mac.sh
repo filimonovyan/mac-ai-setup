@@ -68,5 +68,11 @@ else
   bad "Claude Code" "поставьте Claude Code: https://claude.com/claude-code"
 fi
 
+# Агенты Claude Code
+for a in daily-checker researcher mail-calendar writer; do
+  [ -f ~/.claude/agents/$a.md ] && good "Агент $a" \
+    || bad "Агент $a" "bash <(curl -fsSL https://raw.githubusercontent.com/filimonovyan/mac-ai-setup/main/install-agents.sh)"
+done
+
 echo ""
 echo "Работает: $OK   Не работает: $BAD"

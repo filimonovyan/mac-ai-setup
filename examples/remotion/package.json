@@ -1,0 +1,14 @@
+{
+  "name": "remotion-example",
+  "private": true,
+  "scripts": {
+    "render": "remotion render src/index.jsx Hello out/hello.mp4",
+    "studio": "remotion studio src/index.jsx"
+  },
+  "dependencies": {
+    "@remotion/cli": "^4.0.538",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "remotion": "^4.0.538"
+  }
+}

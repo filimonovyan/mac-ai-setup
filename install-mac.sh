@@ -51,6 +51,14 @@ fi
 
 # 4. Remotion и Playwright (в папке ~/remotion-app)
 echo "▶ 4/7 Remotion и Playwright"
+# Если в ~/.npm или ~/remotion-app есть файлы администратора (после старых установок
+# через sudo), npm не сможет туда писать. Возвращаем их себе.
+for d in ~/.npm ~/remotion-app; do
+  if [ -d "$d" ] && [ -n "$(find "$d" ! -user "$(id -u)" -print -quit 2>/dev/null)" ]; then
+    echo "  В $d есть чужие файлы. Возвращаю их себе (может попросить пароль от Mac)."
+    sudo chown -R "$(id -u):$(id -g)" "$d"
+  fi
+done
 mkdir -p ~/remotion-app
 cd ~/remotion-app
 [ -f package.json ] || npm init -y >/dev/null

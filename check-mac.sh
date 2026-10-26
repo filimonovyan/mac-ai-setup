@@ -69,7 +69,7 @@ else
 fi
 
 # Агенты Claude Code
-for a in daily-checker researcher mail-calendar writer; do
+for a in daily-checker researcher mail-calendar writer vk-ads; do
   [ -f ~/.claude/agents/$a.md ] && good "Агент $a" \
     || bad "Агент $a" "bash <(curl -fsSL https://raw.githubusercontent.com/filimonovyan/mac-ai-setup/main/install-agents.sh)"
 done

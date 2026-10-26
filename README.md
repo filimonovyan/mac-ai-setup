@@ -181,3 +181,15 @@ bash <(curl -fsSL https://raw.githubusercontent.com/filimonovyan/mac-ai-setup/ma
 Как позвать: откройте Claude Code и напишите, например, «Используй агента researcher: найди…». Чтобы увидеть список, спросите Claude: «Какие у тебя есть агенты?»
 
 Для `mail-calendar` к Claude Code должны быть подключены Gmail и Google Календарь.
+
+## Перенос на Mac: работать с Mac, а не из облака
+
+Один раз в Терминале:
+```
+cd ~ && (git -C mac-ai-setup pull || git clone https://github.com/filimonovyan/mac-ai-setup) && bash ~/mac-ai-setup/install-agents.sh
+```
+Потом всегда запускайте Claude Code в этой папке:
+```
+cd ~/mac-ai-setup && claude
+```
+Claude сам прочитает `CLAUDE.md`. Страница «Офис агентов»: `open ~/mac-ai-setup/office/agent-office.html`.

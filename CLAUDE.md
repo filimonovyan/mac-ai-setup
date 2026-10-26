@@ -15,6 +15,7 @@ vk-ads (Таргетолог), personal-brand (Личный бренд), barbers
 ## Файлы
 - `vk-ads-playbook.md` — план рекламы VK для барбершопа.
 - `vk-ads-ski-playbook.md` — план рекламы VK для ROMP.
+- `personal-brand-plan.md` — позиционирование и контент-план Instagram.
 - `office/agent-office.html` — страница «Офис агентов» (открыть двойным щелчком).
 
 ## Важно
